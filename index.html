@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Турнир · Mini App</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div id="title">🏆 Турнир</div>
+    <div id="status" class="status">Подключение…</div>
+  </header>
+
+  <!-- POKER VIEW -->
+  <main id="poker-view" class="view hidden">
+    <div class="table-wrap">
+      <div class="table-felt">
+        <div id="pot" class="pot">Банк: 0</div>
+        <div id="community" class="community"></div>
+        <div id="players-ring"></div>
+      </div>
+    </div>
+
+    <div class="log-box" id="log-box"></div>
+
+    <div class="actions" id="poker-actions">
+      <button class="btn btn-fold" data-act="fold">Фолд</button>
+      <button class="btn btn-check" data-act="check">Чек</button>
+      <button class="btn btn-call" data-act="call">Колл</button>
+      <button class="btn btn-raise" data-act="raise">Рейз</button>
+      <button class="btn btn-allin" data-act="allin">Олл-ин</button>
+    </div>
+
+    <div class="raise-row hidden" id="raise-row">
+      <input type="range" id="raise-slider" min="0" max="1000" value="0" step="10" />
+      <span id="raise-amount">0</span>
+    </div>
+
+    <div class="timer-bar"><div id="timer-fill"></div></div>
+  </main>
+
+  <!-- WHEEL VIEW -->
+  <main id="wheel-view" class="view hidden">
+    <div class="wheel-wrap">
+      <canvas id="wheel" width="640" height="640"></canvas>
+      <div class="pointer">▼</div>
+    </div>
+    <div class="wheel-info">
+      <div id="wheel-prize" class="prize">🏆 Приз</div>
+      <button id="spin-btn" class="btn btn-spin">🎡 КРУТИТЬ</button>
+    </div>
+    <div class="eliminated-box">
+      <h3>❌ Выбывшие</h3>
+      <ul id="eliminated-list"></ul>
+    </div>
+    <div class="active-box">
+      <h3>🟢 На колесе</h3>
+      <ul id="active-list"></ul>
+    </div>
+  </main>
+
+  <!-- WINNER MODAL -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <div id="modal-title">Победитель!</div>
+      <div id="modal-body"></div>
+      <button id="modal-close" class="btn">Закрыть</button>
+    </div>
+  </div>
+
+  <canvas id="confetti" class="confetti hidden"></canvas>
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
